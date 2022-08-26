@@ -104,37 +104,9 @@ select sector ,count(sector) cnt from stk..data group by sector order by cnt des
 select F32 as partners ,count(F32) cnt from stk..data where F32 !='-' group by F32 order by cnt desc 
 
 
---Analysis 17- making the matrix
 
 
-select 'ashnner' as keyy,count(ashneer_amount_invested) from stk..data where ashneer_amount_invested is not null
-
-select 'ashnner' as keyy,count(ashneer_amount_invested) from stk..data where ashneer_amount_invested is not null and  ashneer_amount_invested <>0
-
-select 'ashnner' as keyy,sum(c.ashneer_amount_invested), avg(c.ashneer_equity_taken_P)
-from (select * from stk..data where ashneer_equity_taken_P <>0 and ashneer_equity_taken_P  is not null) c
-
-
-select m.keyy,m.total_deals_present, n.total_amount_invested, n.avg_equity_taken from
-(select a.keyy, a.total_deals_present, b.total_deals from (
-
-select 'Ashnner' as keyy,count(ashneer_amount_invested) total_deals_present from stk..data where ashneer_amount_invested is not null) a
-inner join(
-select 'Ashnner' as keyy,count(ashneer_amount_invested) total_deals from stk..data 
-where ashneer_amount_invested is not null and  ashneer_amount_invested <>0) b
-
-on a.keyy=b.keyy) m
-
-inner join
-
-(select 'ashnner' as keyy,sum(c.ashneer_amount_invested) total_amount_invested, avg(c.ashneer_equity_taken_P) avg_equity_taken
-from (select * from stk..data where ashneer_equity_taken_P <>0 and ashneer_equity_taken_P  is not null) c) n
-
-on m.keyy = n.keyy;
-
-
-
--- Analysis 18- which is the startup in which the highest amount has been invested in each domain/sector
+-- Analysis 16- which is the startup in which the highest amount has been invested in each domain/sector
 
 
 select c.* from
